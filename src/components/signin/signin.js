@@ -46,6 +46,16 @@ const styles = (theme) => ({
   }
 });
 
+class Signin extends React.Component {
+  state = {
+    redirectToReferrer: false
+  };
+
+  signin = () => {
+    this.props.signin();
+  };
+}
+
 function SignIn(props) {
   const { classes } = props;
 
