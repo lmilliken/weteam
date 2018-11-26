@@ -12,6 +12,9 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import auth from '../../auth'
+
+const axios = require('axios');
 
 const styles = (theme) => ({
   main: {
@@ -46,59 +49,79 @@ const styles = (theme) => ({
   }
 });
 
-class Signin extends React.Component {
-  state = {
-    redirectToReferrer: false
+// class Signin extends React.Component {
+//   state = {
+//     redirectToReferrer: false
+//   };
+
+//   signin = () => {
+//     this.props.signin();
+//   };
+// }
+
+class SignIn extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.signin = this.signin.bind(this);
+  }
+
+  signin = (e) => {
+    e.preventDefault();
+    console.log('sign in clicked');
+    auth.signin()
+
   };
 
-  signin = () => {
-    this.props.signin();
-  };
-}
+  render() {
+    const { classes } = this.props;
 
-function SignIn(props) {
-  const { classes } = props;
-
-  return (
-    <main className={classes.main}>
-      <CssBaseline />
-      <Paper className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form}>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Password</InputLabel>
-            <Input
-              name="password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-          </FormControl>
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}>
+    return (
+      <main className={classes.main}>
+        <CssBaseline />
+        <Paper className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
             Sign in
-          </Button>
-        </form>
-      </Paper>
-    </main>
-  );
+          </Typography>
+          <form className={classes.form}>
+            <FormControl margin="normal" fullWidth>
+              <InputLabel htmlFor="email">Email Address</InputLabel>
+              <Input id="email" name="email" autoComplete="email" autoFocus />
+            </FormControl>
+            <FormControl margin="normal" fullWidth>
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <Input
+                name="password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+            </FormControl>
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}>
+              Sign in
+            </Button>
+          </form>
+          <a href="http://localhost:5000/auth/google">
+            <Button type="submit" fullWidth variant="contained" color="primary">
+              Sign in with Google
+            </Button>
+          </a>
+        </Paper>
+      </main>
+    );
+  }
 }
 
 SignIn.propTypes = {

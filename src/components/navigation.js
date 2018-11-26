@@ -17,8 +17,8 @@ const Navigation = () => {
       <Button color="inherit" component={Link} to="/login">
         Login
       </Button>
-      <Button color="inherit" component={Link} to="/protected">
-        Protected
+      <Button color="inherit" component={Link} to="/profile">
+        Profile
       </Button>
       <Button
         label="Details"
